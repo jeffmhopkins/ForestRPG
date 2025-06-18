@@ -160,6 +160,8 @@
             left: 0;
             bottom: 65px;
             background-color: rgba(231, 76, 60, 0.8);
+            z-index: 200;
+            pointer-events: auto;
         }
 
         @media (max-width: 768px) or (pointer: coarse) {
@@ -407,14 +409,32 @@
             movePlayer(10, 0);
             lastMoveDirection = 'right';
         });
-        document.getElementById('shoot-btn').addEventListener('touchstart', (e) => {
-            shootArrow();
+        // Set up mobile controls
+        const shootBtn = document.getElementById('shoot-btn');
+        
+        shootBtn.addEventListener('touchstart', (e) => {
             e.preventDefault();
-        });
+            shootArrow();
+        }, {passive: false});
 
-        // Prevent default touch behavior for other buttons
-        document.querySelectorAll('.mobile-btn:not(#shoot-btn)').forEach(btn => {
-            btn.addEventListener('touchend', (e) => e.preventDefault());
+        // Make sure button is clickable
+        shootBtn.addEventListener('click', shootArrow);
+
+        // Prevent default touch behavior for direction buttons
+        const directionBtns = [
+            document.getElementById('up-btn'), 
+            document.getElementById('down-btn'),
+            document.getElementById('left-btn'),
+            document.getElementById('right-btn')
+        ];
+        
+        directionBtns.forEach(btn => {
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+            }, {passive: false});
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+            }, {passive: false});
         });
 
         // Initialize the game
