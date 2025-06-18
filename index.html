@@ -123,8 +123,11 @@
             display: none;
             position: fixed;
             bottom: 20px;
+            left: 20px;
             right: 20px;
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
         }
 
         .mobile-btn {
@@ -142,10 +145,35 @@
             touch-action: manipulation;
         }
 
+        #direction-btns {
+            display: grid;
+            grid-template-columns: 60px 60px 60px;
+            grid-template-rows: 60px 60px;
+            gap: 5px;
+        }
+
+        #up-btn {
+            grid-column: 2;
+        }
+
+        #left-btn {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        #down-btn {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        #right-btn {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
         #shoot-btn {
-            position: absolute;
-            right: 0;
-            bottom: 70px;
+            align-self: center;
+            background-color: rgba(231, 76, 60, 0.8);
         }
 
         @media (max-width: 768px) or (pointer: coarse) {
@@ -171,10 +199,12 @@
         <div id="tree-count">Trees remaining: 30</div>
         <div id="victory-message">Congratulations!<br>All trees cleared!</div>
         <div id="mobile-controls">
-            <div class="mobile-btn" id="up-btn">↑</div>
-            <div class="mobile-btn" id="left-btn">←</div>
-            <div class="mobile-btn" id="down-btn">↓</div>
-            <div class="mobile-btn" id="right-btn">→</div>
+            <div id="direction-btns">
+                <div class="mobile-btn" id="up-btn">↑</div>
+                <div class="mobile-btn" id="left-btn">←</div>
+                <div class="mobile-btn" id="down-btn">↓</div>
+                <div class="mobile-btn" id="right-btn">→</div>
+            </div>
             <div class="mobile-btn" id="shoot-btn">⚡</div>
         </div>
     </div>
