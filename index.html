@@ -123,11 +123,8 @@
             display: none;
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            right: 20px;
+            left: 10px;
             z-index: 100;
-            display: flex;
-            justify-content: space-between;
         }
 
         .mobile-btn {
@@ -146,33 +143,22 @@
         }
 
         #direction-btns {
-            display: grid;
-            grid-template-columns: 60px 60px 60px;
-            grid-template-rows: 60px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-left: 45px; /* Space for shoot button */
+        }
+
+        .arrow-row {
+            display: flex;
+            justify-content: center;
             gap: 5px;
         }
 
-        #up-btn {
-            grid-column: 2;
-        }
-
-        #left-btn {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        #down-btn {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        #right-btn {
-            grid-column: 3;
-            grid-row: 2;
-        }
-
         #shoot-btn {
-            align-self: center;
+            position: absolute;
+            left: 0;
+            bottom: 65px;
             background-color: rgba(231, 76, 60, 0.8);
         }
 
@@ -199,13 +185,17 @@
         <div id="tree-count">Trees remaining: 30</div>
         <div id="victory-message">Congratulations!<br>All trees cleared!</div>
         <div id="mobile-controls">
-            <div id="direction-btns">
-                <div class="mobile-btn" id="up-btn">↑</div>
-                <div class="mobile-btn" id="left-btn">←</div>
-                <div class="mobile-btn" id="down-btn">↓</div>
-                <div class="mobile-btn" id="right-btn">→</div>
-            </div>
             <div class="mobile-btn" id="shoot-btn">⚡</div>
+            <div id="direction-btns">
+                <div class="arrow-row">
+                    <div class="mobile-btn" id="up-btn">↑</div>
+                </div>
+                <div class="arrow-row">
+                    <div class="mobile-btn" id="left-btn">←</div>
+                    <div class="mobile-btn" id="down-btn">↓</div>
+                    <div class="mobile-btn" id="right-btn">→</div>
+                </div>
+            </div>
         </div>
     </div>
 
