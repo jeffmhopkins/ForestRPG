@@ -407,10 +407,13 @@
             movePlayer(10, 0);
             lastMoveDirection = 'right';
         });
-        document.getElementById('shoot-btn').addEventListener('click', shootArrow);
+        document.getElementById('shoot-btn').addEventListener('touchstart', (e) => {
+            shootArrow();
+            e.preventDefault();
+        });
 
-        // Prevent default touch behavior
-        document.querySelectorAll('.mobile-btn').forEach(btn => {
+        // Prevent default touch behavior for other buttons
+        document.querySelectorAll('.mobile-btn:not(#shoot-btn)').forEach(btn => {
             btn.addEventListener('touchend', (e) => e.preventDefault());
         });
 
