@@ -117,6 +117,49 @@
             z-index: 100;
             text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;
         }
+
+        /* Mobile controls */
+        #mobile-controls {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .mobile-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(52, 152, 219, 0.7);
+            border: 2px solid white;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        #shoot-btn {
+            position: absolute;
+            right: 0;
+            bottom: 70px;
+        }
+
+        @media (max-width: 768px) or (pointer: coarse) {
+            #mobile-controls {
+                display: block;
+            }
+            
+            #controls {
+                font-size: 16px;
+                padding: 10px;
+                background: rgba(0,0,0,0.7);
+                border-radius: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -127,6 +170,13 @@
         <div id="controls">Use arrow keys to move | SPACE to shoot</div>
         <div id="tree-count">Trees remaining: 30</div>
         <div id="victory-message">Congratulations!<br>All trees cleared!</div>
+        <div id="mobile-controls">
+            <div class="mobile-btn" id="up-btn">↑</div>
+            <div class="mobile-btn" id="left-btn">←</div>
+            <div class="mobile-btn" id="down-btn">↓</div>
+            <div class="mobile-btn" id="right-btn">→</div>
+            <div class="mobile-btn" id="shoot-btn">⚡</div>
+        </div>
     </div>
 
     <script>
@@ -320,6 +370,30 @@
             grow();
         }
         
+        // Mobile controls
+        document.getElementById('up-btn').addEventListener('touchstart', () => {
+            movePlayer(0, -10);
+            lastMoveDirection = 'up';
+        });
+        document.getElementById('left-btn').addEventListener('touchstart', () => {
+            movePlayer(-10, 0);
+            lastMoveDirection = 'left';
+        });
+        document.getElementById('down-btn').addEventListener('touchstart', () => {
+            movePlayer(0, 10);
+            lastMoveDirection = 'down';
+        });
+        document.getElementById('right-btn').addEventListener('touchstart', () => {
+            movePlayer(10, 0);
+            lastMoveDirection = 'right';
+        });
+        document.getElementById('shoot-btn').addEventListener('click', shootArrow);
+
+        // Prevent default touch behavior
+        document.querySelectorAll('.mobile-btn').forEach(btn => {
+            btn.addEventListener('touchend', (e) => e.preventDefault());
+        });
+
         // Initialize the game
         createTrees();
     </script>
